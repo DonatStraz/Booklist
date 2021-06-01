@@ -62,7 +62,6 @@ class Store {
     books.forEach(function(book){
       const ui  = new UI;
 
-      // Add book to UI
       ui.addBookToList(book);
     });
   }
@@ -104,7 +103,6 @@ document.getElementById('book-form').addEventListener('submit', function(e){
   const ui = new UI();
 
   console.log(ui);
-
 
   if(title === '' || author === '' || total === '' || read =='' || rate== '') {
   
