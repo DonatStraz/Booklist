@@ -88,10 +88,8 @@ class Store {
   }
 }
 
-// DOM Load Event
 document.addEventListener('DOMContentLoaded', Store.displayBooks);
 
-// Event Listener for add book
 document.getElementById('book-form').addEventListener('submit', function(e){
   // Get form values
   const title = document.getElementById('title').value,
@@ -100,48 +98,40 @@ document.getElementById('book-form').addEventListener('submit', function(e){
         left = document.getElementById('read').value,
         rate =  document.querySelector('input[name="rate"]:checked').value;
       
-  // Instantiate book
+
   const book = new Book(title, author, total, left , rate);
 
-  // Instantiate UI
   const ui = new UI();
 
   console.log(ui);
 
-  // Validate
+
   if(title === '' || author === '' || total === '' || read =='' || rate== '') {
-    // Error alert
+  
     ui.showAlert('Please fill in all fields', 'error');
   } else {
-    // Add book to list
+   
     ui.addBookToList(book);
 
-    // Add to LS
     Store.addBook(book);
 
-    // Show success
     ui.showAlert('Book Added!', 'success');
   
-    // Clear fields
     ui.clearFields();
   }
 
   e.preventDefault();
 });
 
-// Event Listener for delete
+
 document.getElementById('book-list').addEventListener('click', function(e){
 
-  // Instantiate UI
   const ui = new UI();
 
-  // Delete book
   ui.deleteBook(e.target);
 
-  // Remove from LS
   Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
-  // Show message
   ui.showAlert('Book Removed!', 'success');
 
   e.preventDefault();
